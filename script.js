@@ -1,14 +1,17 @@
 // Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyCNU5uJ9YkR3F3BtghpRwIJ3TR6FaUFxTM",
-  authDomain: "real-time-chat-app-b5633.firebaseapp.com",
-  projectId: "real-time-chat-app-b5633",
-  storageBucket: "real-time-chat-app-b5633.appspot.com",
-  messagingSenderId: "598824406460",
-  appId: "1:598824406460:web:69dd525b78ada125be2fb9"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyCNU5uJ9YkR3F3BtghpRwIJ3TR6FaUFxTM",
+    authDomain: "real-time-chat-app-b5633.firebaseapp.com",
+    projectId: "real-time-chat-app-b5633",
+    storageBucket: "real-time-chat-app-b5633.appspot.com",
+    messagingSenderId: "598824406460",
+    appId: "1:598824406460:web:69dd525b78ada125be2fb9",
+    measurementId: "G-0RBBS9DMW7"
+  };
 
-firebase.initializeApp(firebaseConfig);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 
 // Get a reference to the database service
 const database = firebase.database();
