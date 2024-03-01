@@ -1,11 +1,8 @@
-// Get a reference to the database service
-const database = firebase.database();
-
 // Function to send a message
 function sendMessage() {
   const message = document.getElementById("message-input").value;
   if (message.trim() !== "") {
-    const newMessageRef = database.ref("messages").push();
+    const newMessageRef = firebase.database().ref("messages").push();
     newMessageRef.set({
       text: message
     });
@@ -22,7 +19,7 @@ function displayMessage(message) {
 }
 
 // Listen for new messages in real-time
-database.ref("messages").on("child_added", function(snapshot) {
+firebase.database().ref("messages").on("child_added", function(snapshot) {
   const message = snapshot.val();
   displayMessage(message);
 });
