@@ -5,8 +5,10 @@ function sendMessage() {
   if (messageText !== "") {
     const sender = "user1"; // Assuming sender is a constant for demonstration
     const timestamp = new Date().toISOString();
-    const newMessageRef = firebase.database().ref("messages").push();
-    newMessageRef.set({
+    const database = getDatabase(); // Get a reference to the Firebase Realtime Database
+    const messagesRef = ref(database, 'messages'); // Reference to the 'messages' node
+    const newMessageRef = push(messagesRef); // Generate a new unique key for the message
+    set(newMessageRef, {
       sender: sender,
       text: messageText,
       timestamp: timestamp
@@ -24,7 +26,9 @@ function displayMessage(message) {
 }
 
 // Listen for new messages in real-time
-firebase.database().ref("messages").on("child_added", function(snapshot) {
+const database = getDatabase(); // Get a reference to the Firebase Realtime Database
+const messagesRef = ref(database, 'messages'); // Reference to the 'messages' node
+onChildAdded(messagesRef, (snapshot) => {
   const message = snapshot.val();
   displayMessage(message);
 });
