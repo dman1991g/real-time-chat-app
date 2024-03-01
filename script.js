@@ -1,5 +1,5 @@
 // Initialize Firebase
-  const firebaseConfig = {
+const firebaseConfig = {
     apiKey: "AIzaSyCNU5uJ9YkR3F3BtghpRwIJ3TR6FaUFxTM",
     authDomain: "real-time-chat-app-b5633.firebaseapp.com",
     projectId: "real-time-chat-app-b5633",
@@ -9,9 +9,8 @@
     measurementId: "G-0RBBS9DMW7"
   };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+// Initialize Firebase app
+const app = firebase.initializeApp(firebaseConfig);
 
 // Get a reference to the database service
 const database = firebase.database();
