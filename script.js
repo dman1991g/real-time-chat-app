@@ -26,7 +26,7 @@ function displayMessage(message) {
 }
 
 // Listen for new messages in real-time
-firebase.database().ref("messages").on("child_added", function(snapshot) {
+firebase.database().ref("messages").on("child_added" function(snapshot) {
   const message = snapshot.val();
   displayMessage(message);
 });
