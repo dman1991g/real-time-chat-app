@@ -1,12 +1,17 @@
 // Function to send a message
 function sendMessage() {
-  const message = document.getElementById("message-input").value;
-  if (message.trim() !== "") {
-    const newMessageRef = window.firebase.database().ref("messages").push();
+  const messageInput = document.getElementById("message-input");
+  const messageText = messageInput.value.trim();
+  if (messageText !== "") {
+    const sender = "user1"; // Assuming sender is a constant for demonstration
+    const timestamp = new Date().toISOString();
+    const newMessageRef = firebase.database().ref("messages").push();
     newMessageRef.set({
-      text: message
+      sender: sender,
+      text: messageText,
+      timestamp: timestamp
     });
-    document.getElementById("message-input").value = "";
+    messageInput.value = "";
   }
 }
 
@@ -14,12 +19,12 @@ function sendMessage() {
 function displayMessage(message) {
   const chatBox = document.getElementById("chat-box");
   const messageElement = document.createElement("div");
-  messageElement.innerText = message.text;
+  messageElement.innerText = `${message.sender}: ${message.text}`;
   chatBox.appendChild(messageElement);
 }
 
 // Listen for new messages in real-time
-window.firebase.database().ref("messages").on("child_added", function(snapshot) {
+firebase.database().ref("messages").on("child_added", function(snapshot) {
   const message = snapshot.val();
   displayMessage(message);
 });
