@@ -2,7 +2,7 @@
 function sendMessage() {
   const message = document.getElementById("message-input").value;
   if (message.trim() !== "") {
-    const newMessageRef = firebase.database().ref("messages").push();
+    const newMessageRef = window.firebase.database().ref("messages").push();
     newMessageRef.set({
       text: message
     });
@@ -19,7 +19,7 @@ function displayMessage(message) {
 }
 
 // Listen for new messages in real-time
-firebase.database().ref("messages").on("child_added", function(snapshot) {
+window.firebase.database().ref("messages").on("child_added", function(snapshot) {
   const message = snapshot.val();
   displayMessage(message);
 });
